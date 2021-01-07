@@ -18,4 +18,9 @@ The details are as follows:
 ---| ---
 MF Name | [ITI Long Term Equity Fund Direct - Growth](https://www.google.com/finance/quote/ITI_LONG_TERM_15Y5KE6:MUTF_IN)
 Investment | ₹500
+Type | Tax Saver, ELSS
+Lockin period | 3 years 
+Returns | 120.82(24.16%) on 7th Jan 2021
 Platform | [Paytm Money](https://www.paytmmoney.com/)
+
+I made this little investment without any knowledge of stock market and it is giving very good returns currently. This motivated me to start learning about stock market and investments
