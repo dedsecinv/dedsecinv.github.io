@@ -1,0 +1,156 @@
+---
+layout: indexLayout
+---
+
+<header class="indexHeader">
+	<div class="container" id="indexHeaderContainer">
+	  <div class="row">
+		<div class="col col-12">
+		  <div class="header-box">
+			<div class="logo-title">
+			  <a href="{{site.baseurl}}/" class="logo-text">{{ site.title }}</a>
+			</div>
+  
+			<nav class="nav-menu">
+			  <i class="menu-close ion ion-ios-close"></i>
+			  <ul class="menu-list">
+				<li class="menu-item"><a href="{{site.baseurl}}/" class="menu-link">Home</a></li>
+				<li class="menu-item"><a href="{{ site.baseurl }}/about/" class="menu-link">About</a></li>
+				<!-- <li class="menu-item"><a href="{{ site.baseurl }}/styleguide/" class="menu-link">Style Sheet</a></li> -->
+				<!-- {% for page in site.pages %}
+				  {% unless page.name == 'tags.html' or page.name == '404.html' %}
+				{% if page.title %}
+				<li class="menu-item"><a href="{{ page.url | prepend: site.baseurl }}" class="menu-link">{{ page.title }}</a></li>
+				{% endif %}
+				  {% endunless %}
+				{% endfor %} -->
+			  </ul>
+			</nav>
+			<div class="nav-buttons">
+			  <i class="menu-button d-hide ion ion-ios-menu"></i>
+			  <i class="search-button ion ion-ios-search"></i>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+  </header> <!-- /.header -->
+
+  <div class="search">
+	<div class="search-box">
+	  <i class="search-close-button ion ion-ios-close"></i>
+	  <label for="js-search-input" class="screen-reader-text"></label>
+	  <input type="text" id="js-search-input" class="search-text" autocomplete="off" placeholder="Search Something...">
+	  <ol id="js-results-container" class="search-results-list"></ol>
+	</div>
+  </div>
+
+  <nav class="index-nav-menu">
+	<i class="menu-close ion ion-ios-close"></i>
+	<ul class="menu-list">
+	  <li class="menu-item"><a href="{{site.baseurl}}/" class="menu-link">Home</a></li>
+	  <li class="menu-item"><a href="{{ site.baseurl }}/about/" class="menu-link">About</a></li>
+	  <!-- <li class="menu-item"><a href="{{ site.baseurl }}/styleguide/" class="menu-link">Style Sheet</a></li> -->
+	  <!-- {% for page in site.pages %}
+		{% unless page.name == 'tags.html' or page.name == '404.html' %}
+	  {% if page.title %}
+	  <li class="menu-item"><a href="{{ page.url | prepend: site.baseurl }}" class="menu-link">{{ page.title }}</a></li>
+	  {% endif %}
+		{% endunless %}
+	  {% endfor %} -->
+	</ul>
+  </nav>
+
+{% if site.posts.size > 0 %}
+{%- for post in paginator.posts -%}
+{% if forloop.index <= 1 %}
+<!--Mask-->
+<div id="intro" class="view" style="background-image: url({{"/img/" | prepend: site.baseurl | append : post.image}})">
+	<div class="article-content-first">
+		<div class="article-tag">
+			{% if post.tags.size >= 1 %}
+			{% for tag in post.tags %}
+			<a href="{{ site.baseurl }}/tags#{{tag}}" class="tag">{{ tag }}</a>
+			{% endfor %}
+			{% else %} {% endif %}
+		</div>
+		<h2 class="article-title"><a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a></h2>
+		<p class="article-excerpt">
+			{% if post.description %}{{ post.description | strip_html | truncate: 163 }}{% else %}{{ post.content | strip_html | truncate: 163 }}{% endif %}
+		</p>
+		<a href="{{ post.url | prepend: site.baseurl }}" class="button read-more">Read More</a>
+	</div>
+	<div class="moreBlock">
+		  <a href="#moreBlogs" id="moreLink"><span></span>MORE BLOGS</a>
+	</div>
+</div>
+<!--/.Mask-->
+<!-- <div class="article-first"> -->
+<!-- <div class="article-image-first" style="background-image: url({{"/img/" | prepend: site.baseurl | append : post.image}})">
+					<div class="article-content-first">
+						<div class="article-tag">
+						{% if post.tags.size >= 1 %}
+							{% for tag in post.tags %}
+							<a href="{{ site.baseurl }}/tags#{{tag}}" class="tag">{{ tag }}</a>
+							{% endfor %}
+						{% else %} {% endif %}
+						</div>
+						<h2 class="article-title"><a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a></h2>
+						<p class="article-excerpt">{% if post.description %}{{ post.description | strip_html | truncate: 163 }}{% else %}{{ post.content | strip_html | truncate: 163 }}{% endif %}</p>
+						<a href="{{ post.url | prepend: site.baseurl }}" class="button read-more">Read More</a>
+					</div>
+				</div> -->
+<!-- </div> /.article-first -->
+{% endif %}
+
+{% endfor %}
+{% endif %}
+
+<div class="container" id="moreBlogs">
+	<div class="row">
+		<div class="col col-12 col-t-8">
+			<div class="row">
+				{%- for post in paginator.posts offset: 1 -%}
+				<article class="article col col-12 col-t-6">
+					<div class="article-box">
+						<div class="article-head">
+							<a href="{{ post.url | prepend: site.baseurl }}" class="article-image"
+								style="background-image: url({{"/img/" | prepend: site.baseurl | append : post.image}})">
+								<div class="image-overlay">
+									<span class="image-overlay-text">{{post.title | slice: 0}}</span>
+								</div>
+							</a>
+						</div>
+						<div class="article-content">
+							<div class="article-info">
+								<div class="article-date">
+									<span class="date"><time
+											datetime="{{ post.date | date_to_xmlschema }}">{% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}{{ post.date | date: date_format }}</time></span>
+								</div>
+								<div class="article-tag">
+									{% if post.tags.size >= 1 %}
+									{% for tag in post.tags %}
+									<a href="{{ site.baseurl }}/tags#{{tag}}" class="tag">{{ tag }}</a>
+									{% endfor %}
+									{% else %} {% endif %}
+								</div>
+							</div>
+							<h2 class="article-title">
+								<a href="{{ post.url | prepend: site.baseurl }}">{{post.title}}</a>
+							</h2>
+							<p class="article-excerpt">
+								{% if post.description %}{{ post.description | strip_html | truncate: 135 }}{% else %}{{ post.content | strip_html | truncate: 135 }}{% endif %}
+							</p>
+						</div>
+					</div>
+				</article> <!-- /.article -->
+				{% endfor %}
+			</div>
+			{% include pagination.html %}
+		</div>
+		<div class="col col-12 col-t-4">
+			{% include sidebar.html %}
+		</div>
+	</div>
+</div>
